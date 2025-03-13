@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".MainActivity"
+    tools:ignore="MissingDefaultResource">
+
+    <com.trackasia.android.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:trackasia_cameraZoom="12"
+        app:trackasia_enableTilePrefetch="true"
+        app:trackasia_enableZMediaOverlay="true"
+        app:trackasia_renderTextureMode="true"
+        app:trackasia_renderTextureTranslucentSurface="true"
+        app:trackasia_uiAttribution="true"
+        app:trackasia_uiCompass="true"
+        app:trackasia_uiDoubleTapGestures="true"
+        app:trackasia_uiLogo="true"
+        app:trackasia_uiRotateGestures="true"
+        app:trackasia_uiScrollGestures="true"
+        app:trackasia_uiTiltGestures="true"
+        app:trackasia_uiZoomGestures="true" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPointBefore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_12sdp"
+        android:paddingRight="@dimen/_12sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tl_address_from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:theme="@style/TextLabel"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                    android:id="@+id/edt_address_from"
+                    style="@style/edit_text_default"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edt_disable_input"
+                    android:ellipsize="end"
+                    android:hint="Start point"
+                    android:imeOptions="actionNext"
+                    android:nextFocusRight="@+id/edt_address_to"
+                    android:paddingTop="@dimen/_16sdp"
+                    android:paddingRight="@dimen/_50sdp"
+                    android:singleLine="false"
+                    android:textColor="@color/colorBlue" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right">
+
+                <ImageButton
+                    android:id="@+id/btnClear1"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@drawable/ic_clear"
+                    android:paddingRight="@dimen/_30sdp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right">
+
+                <ImageButton
+                    android:id="@+id/btn_my_location1"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@drawable/ic_marker"
+                    android:paddingRight="@dimen/_30sdp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPointAfter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_12sdp"
+        android:paddingRight="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/clPointBefore">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tl_address_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:hint="End point"
+                android:theme="@style/TextLabel"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/tl_address_from">
+
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                    android:id="@+id/edt_address_to"
+                    style="@style/edit_text_default"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_edt_disable_input"
+                    android:ellipsize="end"
+                    android:hint="End point"
+                    android:imeOptions="actionNext"
+                    android:paddingTop="@dimen/_16sdp"
+                    android:paddingRight="@dimen/_50sdp"
+                    android:singleLine="false"
+                    android:textColor="@color/colorBlue" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right">
+
+                <ImageButton
+                    android:id="@+id/btnClear2"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@drawable/ic_clear"
+                    android:paddingRight="@dimen/_30sdp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|right">
+
+                <ImageButton
+                    android:id="@+id/btn_my_location2"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:background="@drawable/ic_marker"
+                    android:paddingRight="@dimen/_30sdp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clDirection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginRight="@dimen/_24sdp"
+        android:background="@color/colorGreen60"
+        android:paddingTop="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_6sdp"
+        app:layout_constraintStart_toStartOf="@+id/clPointAfter"
+        app:layout_constraintTop_toBottomOf="@+id/clPointAfter">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_24sdp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Distance:"
+                android:textColor="@color/colorBlue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textDistanceValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="0Km"
+                android:textColor="@color/colorBlue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textDistance"
+                app:layout_constraintStart_toEndOf="@+id/textDistance"
+                app:layout_constraintTop_toTopOf="@+id/textDistance" />
+
+            <TextView
+                android:id="@+id/textTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Time:"
+                android:textColor="@color/colorBlue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textDistanceValue"
+                app:layout_constraintStart_toEndOf="@+id/textDistanceValue"
+                app:layout_constraintTop_toTopOf="@+id/textDistanceValue" />
+
+            <TextView
+                android:id="@+id/textTimeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="20s"
+                android:textColor="@color/colorBlue"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textTime"
+                app:layout_constraintStart_toEndOf="@+id/textTime"
+                app:layout_constraintTop_toTopOf="@+id/textTime" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:text="Click on the red location on the map to display details"
+                android:textColor="@color/colorRed"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clDistance2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="@+id/clDistance"
+            app:layout_constraintTop_toBottomOf="@+id/clDistance">
+
+            <TextView
+                android:id="@+id/textDistance2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Distance:"
+                android:textColor="@color/colorBlack70"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textDistanceValue2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_6sdp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="0Km"
+                android:textColor="@color/colorBlack70"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textDistance2"
+                app:layout_constraintStart_toEndOf="@+id/textDistance2"
+                app:layout_constraintTop_toTopOf="@+id/textDistance2" />
+
+            <TextView
+                android:id="@+id/textTime2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Time:"
+                android:textColor="@color/colorBlack70"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textDistanceValue2"
+                app:layout_constraintStart_toEndOf="@+id/textDistanceValue2"
+                app:layout_constraintTop_toTopOf="@+id/textDistanceValue2" />
+
+            <TextView
+                android:id="@+id/textTimeValue2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="20s"
+                android:textColor="@color/colorBlack70"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/textTime2"
+                app:layout_constraintStart_toEndOf="@+id/textTime2"
+                app:layout_constraintTop_toTopOf="@+id/textTime2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginRight="@dimen/_12sdp"
+            android:text="Click on the red location on the map to display details"
+            android:textColor="@color/colorRed"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAddressRouter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView-->
+    <!--        android:id="@+id/instructionView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"/>-->
+
+    <!--    <com.mapbox.services.android.navigation.ui.v5.instruction.maneuver.ManeuverView-->
+    <!--        android:id="@+id/maneuverView"-->
+    <!--        android:layout_width="40dp"-->
+    <!--        android:layout_height="40dp"-->
+    <!--        android:layout_margin="8dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView-->
+    <!--        android:id="@+id/instructionsView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--       -->
+    <!--    </com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView>-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_distance"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginRight="@dimen/_12sdp"-->
+    <!--        android:paddingRight="@dimen/_6sdp"-->
+    <!--        android:textColor="@color/colorWhite"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:ignore="MissingConstraints" />-->
+
+    <Button
+        android:id="@+id/startRouteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_6sdp"
+        android:backgroundTint="#CC25C6BA"
+        android:paddingLeft="@dimen/_8sdp"
+        android:paddingRight="@dimen/_8sdp"
+        android:text="Navigation"
+        android:textSize="@dimen/_9ssp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/clearPoints"
+        app:layout_constraintEnd_toStartOf="@+id/clearPoints"
+        app:layout_constraintTop_toTopOf="@+id/clearPoints" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/navigationRouter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:scaleType="center"
+        android:src="@drawable/ic_navigation_24"
+        android:tint="@android:color/white"
+        android:visibility="visible"
+        app:backgroundTint="@color/colorBlue"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/map3d"
+        app:layout_constraintEnd_toEndOf="@+id/map3d"
+        app:layout_constraintStart_toStartOf="@+id/map3d" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/map3d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:scaleType="center"
+        android:src="@drawable/ic_map_3d"
+        android:tint="@android:color/white"
+        android:visibility="visible"
+        app:backgroundTint="@color/colorGreen"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/locationMy"
+        app:layout_constraintEnd_toEndOf="@+id/locationMy"
+        app:layout_constraintStart_toStartOf="@+id/locationMy" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/clearPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:scaleType="center"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:tint="@android:color/white"
+        android:visibility="visible"
+        app:backgroundTint="@color/colorRed"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/locationMy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:scaleType="center"
+        android:src="@drawable/ic_location_my"
+        android:tint="@android:color/white"
+        android:visibility="visible"
+        app:backgroundTint="@color/colorBlue"
+        app:fabSize="mini"
+        app:layout_constraintBottom_toTopOf="@+id/clearPoints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

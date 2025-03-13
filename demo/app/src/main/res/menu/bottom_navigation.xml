@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_map_single_point"
+        android:icon="@drawable/ic_map_single"
+        android:title="Map view" />
+    <item
+        android:id="@+id/navigation_map_multi_point"
+        android:icon="@drawable/ic_map_multi"
+        android:title="Map point" />
+    <item
+        android:id="@+id/navigation_map_cluster"
+        android:icon="@drawable/ic_map_cluster"
+        android:title="Map Cluster" />
+    <item
+        android:id="@+id/navigation_layer"
+        android:icon="@drawable/ic_map_animation"
+        android:title="Map Animation" />
+    <item
+        android:id="@+id/navigation_feature"
+        android:icon="@drawable/ic_feature"
+        android:title="Map Feature" />
+</menu>

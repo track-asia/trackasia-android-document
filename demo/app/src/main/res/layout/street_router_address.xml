@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorGreen60"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/_12sdp"
+    android:paddingTop="@dimen/_8sdp"
+    android:paddingEnd="@dimen/_12sdp"
+    android:paddingBottom="@dimen/_8sdp">
+
+    <ImageView
+        android:id="@+id/iconDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/textDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1111"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        android:lines="1"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:text="aaaaaa"
+        android:textColor="@color/colorWhite"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        android:lines="1"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1111"
+        android:lines="1"
+        android:textSize="12sp" />
+
+</LinearLayout>

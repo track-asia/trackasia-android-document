@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <com.trackasia.android.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:trackasia_cameraZoom="12"
+        app:trackasia_enableTilePrefetch="true"
+        app:trackasia_enableZMediaOverlay="true"
+        app:trackasia_renderTextureMode="true"
+        app:trackasia_renderTextureTranslucentSurface="true"
+        app:trackasia_uiAttribution="true"
+        app:trackasia_uiCompass="true"
+        app:trackasia_uiDoubleTapGestures="true"
+        app:trackasia_uiLogo="true"
+        app:trackasia_uiRotateGestures="true"
+        app:trackasia_uiScrollGestures="true"
+        app:trackasia_uiTiltGestures="true"
+        app:trackasia_uiZoomGestures="true" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPolygon"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:background="#CC3D6EBE"
+        android:text="Polygon"
+        app:layout_constraintEnd_toStartOf="@+id/btnPolyline"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/mapView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnPolyline"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:background="#CC3D6EBE"
+        android:text="Polyline"
+        app:layout_constraintBottom_toBottomOf="@+id/btnPolygon"
+        app:layout_constraintEnd_toStartOf="@+id/btnAddMarkets"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnPolygon"
+        app:layout_constraintTop_toTopOf="@+id/btnPolygon" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddMarkets"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:background="#CC3D6EBE"
+        android:text="Markets"
+        app:layout_constraintBottom_toBottomOf="@id/btnPolyline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnPolyline"
+        app:layout_constraintTop_toTopOf="@+id/btnPolyline" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnMapCompare"
+        android:layout_width="@dimen/_186sdp"
+        android:layout_height="@dimen/_38sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginLeft="@dimen/_12sdp"
+        android:layout_marginRight="@dimen/_12sdp"
+        android:background="#CC3D6EBE"
+        android:text="Map Compare Google"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPolygon" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_vietnam"
+        android:title="Việt Nam"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_singapo"
+        android:title="Singapore"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_thailand"
+        android:title="Thailand"
+        app:showAsAction="never" />
+<!--    <item-->
+<!--        android:id="@+id/action_taiwain"-->
+<!--        android:title="Taiwan"-->
+<!--        app:showAsAction="never" />-->
+<!--    <item-->
+<!--        android:id="@+id/action_malaysia"-->
+<!--        android:title="Malaysia"-->
+<!--        app:showAsAction="never" />-->
+</menu>

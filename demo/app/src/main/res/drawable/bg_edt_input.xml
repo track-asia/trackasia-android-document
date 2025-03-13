@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <item-->
+<!--        android:top="@dimen/_7sdp">-->
+<!--        <shape>-->
+<!--            <stroke-->
+<!--                android:width="0.5dp"-->
+<!--                android:color="@color/grayMap"/>-->
+<!--            <gradient android:angle="135" android:startColor="#A6F9F9F9" android:centerColor="#A6F9F9F9" />-->
+<!--            <corners android:radius="5dp" />-->
+
+<!--        </shape>-->
+
+<!--    </item>-->
+<!--</layer-list>-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- State when the AutoCompleteTextView is focused -->
+    <item android:state_focused="true">
+        <layer-list>
+            <item>
+                <!-- Background with border -->
+                <shape>
+                    <stroke
+                        android:width="0.5dp"
+                        android:color="@color/grayMap"/>
+                    <solid android:color="#A625C6BA" />
+                    <corners android:radius="5dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <!-- Default state -->
+    <item>
+        <layer-list>
+            <item>
+                <!-- Default background without border -->
+                <shape>
+                    <solid android:color="#A6F9F9F9" />
+                    <corners android:radius="5dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

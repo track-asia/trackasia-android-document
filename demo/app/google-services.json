@@ -1,0 +1,191 @@
+{
+  "project_info": {
+    "project_number": "817120621812",
+    "firebase_url": "https://tracking-fcfd0.firebaseio.com",
+    "project_id": "tracking-fcfd0",
+    "storage_bucket": "tracking-fcfd0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817120621812:android:ae70360c4f3c69b3d91aa1",
+        "android_client_info": {
+          "package_name": "com.trackasia.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817120621812-2dl74jg778bnhfh7v17dt4rvj1jf6ui0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwkQUArVSc1fh-xweGuiLjJQaf4TA-PTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817120621812-0trqror8t135hptkthjbrrd2hhmj5et9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "817120621812-22m1dmrf77uanlpn1sdniri5ft4qiag1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.advn.iostrackingclient",
+                "app_store_id": "1473398643"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817120621812:android:a520c03d2bdf7f53d91aa1",
+        "android_client_info": {
+          "package_name": "com.trackasia.sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817120621812-2dl74jg778bnhfh7v17dt4rvj1jf6ui0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwkQUArVSc1fh-xweGuiLjJQaf4TA-PTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817120621812-0trqror8t135hptkthjbrrd2hhmj5et9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "817120621812-22m1dmrf77uanlpn1sdniri5ft4qiag1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.advn.iostrackingclient",
+                "app_store_id": "1473398643"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817120621812:android:51fc5eba46cef8dd",
+        "android_client_info": {
+          "package_name": "vn.advn.trackingapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817120621812-0mn9fgg9js4ic82vrgfv6afm202jvdrd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.advn.trackingapplication",
+            "certificate_hash": "c1fe04112fee1703eac711781d25a7dbec422327"
+          }
+        },
+        {
+          "client_id": "817120621812-mfadedtjeck2ag53b1apreg93heqpip4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.advn.trackingapplication",
+            "certificate_hash": "9653b1ad420ad68d4ebbf87a90120ff9ec78d203"
+          }
+        },
+        {
+          "client_id": "817120621812-2dl74jg778bnhfh7v17dt4rvj1jf6ui0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwkQUArVSc1fh-xweGuiLjJQaf4TA-PTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817120621812-0trqror8t135hptkthjbrrd2hhmj5et9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "817120621812-22m1dmrf77uanlpn1sdniri5ft4qiag1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.advn.iostrackingclient",
+                "app_store_id": "1473398643"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817120621812:android:3a6f0014b1933683d91aa1",
+        "android_client_info": {
+          "package_name": "vn.advn.trackingclientapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817120621812-aidejqu088co3jr77h399irrja4k60nc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.advn.trackingclientapp",
+            "certificate_hash": "80445798562fe5a78b3b218c38cfb4889f6a90c1"
+          }
+        },
+        {
+          "client_id": "817120621812-b82ptlktc15adrfipe04iuemb1ga0s6e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.advn.trackingclientapp",
+            "certificate_hash": "eb5b573ef3b9ec6d007dfcbbff5031f9407ccc60"
+          }
+        },
+        {
+          "client_id": "817120621812-2dl74jg778bnhfh7v17dt4rvj1jf6ui0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwkQUArVSc1fh-xweGuiLjJQaf4TA-PTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817120621812-0trqror8t135hptkthjbrrd2hhmj5et9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "817120621812-22m1dmrf77uanlpn1sdniri5ft4qiag1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "vn.advn.iostrackingclient",
+                "app_store_id": "1473398643"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

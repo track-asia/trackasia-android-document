@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".MainActivity">
+
+    <com.trackasia.android.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:trackasia_cameraZoom="12"
+        app:trackasia_uiAttribution="true"
+        app:trackasia_uiCompass="true"
+        app:trackasia_uiLogo="true"
+        app:trackasia_uiRotateGestures="true"
+        app:trackasia_uiScrollGestures="true"
+        app:trackasia_uiTiltGestures="true"
+        app:trackasia_uiZoomGestures="true"
+        app:trackasia_enableTilePrefetch="true"
+        app:trackasia_enableZMediaOverlay="true"
+        app:trackasia_renderTextureMode="true"
+        app:trackasia_renderTextureTranslucentSurface="true"
+        app:trackasia_uiDoubleTapGestures="true"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

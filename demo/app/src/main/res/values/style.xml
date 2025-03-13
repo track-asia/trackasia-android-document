@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <!-- enable window content transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+    </style>
+
+    <style name="TextLabel" parent="Widget.Design.TextInputLayout">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/colorBlue</item>
+        <item name="android:textSize">@dimen/_13ssp</item>
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/colorBlack70</item>
+        <item name="colorControlNormal">@color/colorBlack70</item>
+        <item name="colorControlActivated">@color/colorBlack70</item>
+    </style>
+
+    <style name="edit_text_default" parent="text_default">
+        <item name="android:lines">1</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:lineSpacingExtra">@dimen/_5ssp</item>
+        <item name="android:layout_height">@dimen/_40sdp</item>
+        <item name="android:inputType">text</item>
+        <item name="android:maxLength">128</item>
+        <item name="android:paddingTop">@dimen/_10sdp</item>
+        <item name="android:paddingBottom">@dimen/_10sdp</item>
+        <item name="android:textColorHint">@color/colorBlue</item>
+        <item name="android:paddingLeft">@dimen/_10sdp</item>
+        <item name="android:paddingRight">@dimen/_10sdp</item>
+<!--        <item name="android:background">@drawable/bg_edt</item>-->
+    </style>
+
+    <style name="edit_text_icon" parent="edit_text_default">
+        <item name="android:paddingLeft">@dimen/_35sdp</item>
+        <item name="android:paddingBottom">@dimen/_3sdp</item>
+    </style>
+
+    <style name="text_default10">
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/colorBlackText</item>
+    </style>  <!--TEXT-->
+    <style name="text_default">
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/colorBlackText</item>
+    </style>
+
+    <!--TEXTVIEW-->
+    <style name="text_view_default" parent="text_default">
+        <item name="android:lineSpacingExtra">@dimen/_3ssp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="text_view_default_size10" parent="text_default">
+        <item name="android:lineSpacingExtra">@dimen/_3ssp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TestNavigationViewDark" parent="NavigationViewDark">
+<!--        <item name="navigationViewMapStyle">@string/map_style_light</item>-->
+    </style>
+
+    <style name="TestNavigationViewLight" parent="NavigationViewLight">
+<!--        <item name="navigationViewMapStyle">@string/map_style_light</item>-->
+    </style>
+</resources>
