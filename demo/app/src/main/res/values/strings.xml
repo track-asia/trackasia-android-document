@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Trackasia Map</string>
+    <string name="app_name">TrackasiaSample</string>
     <string name="title_activity_navigation_multil_point">NavigationMultilPoint</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

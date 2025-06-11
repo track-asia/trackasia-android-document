@@ -1,6 +1,6 @@
 # **TRACK ASIA TÍCH HỢP**
 
-# Tích hợp TrackAsia Map vào Android
+# Tích hợp TrackasiaSample vào Android
 
 ## 1. Cấu hình Gradle
 
@@ -66,7 +66,7 @@ Thêm `MapView` vào file layout XML:
     app:trackasia_uiZoomGestures="true" />
 ```
 
-## 3. Khởi tạo TrackAsia Map trong Activity/Fragment
+## 3. Khởi tạo TrackasiaSample trong Activity/Fragment
 
 ### Import thư viện cần thiết:
 
@@ -182,5 +182,5 @@ override fun onSaveInstanceState(outState: Bundle) {
 
 ## 7. Kết luận
 ```kotlin
-Với hướng dẫn trên, bạn đã có thể tích hợp TrackAsia Map vào ứng dụng Android, thiết lập bản đồ với giao diện tuỳ chỉnh, và quản lý vòng đời của `MapView` đúng cách. Bạn có thể mở rộng tính năng như hiển thị marker, vẽ tuyến đường, và sử dụng navigation bằng cách tích hợp thêm các API của TrackAsia.
+Với hướng dẫn trên, bạn đã có thể tích hợp TrackasiaSample vào ứng dụng Android, thiết lập bản đồ với giao diện tuỳ chỉnh, và quản lý vòng đời của `MapView` đúng cách. Bạn có thể mở rộng tính năng như hiển thị marker, vẽ tuyến đường, và sử dụng navigation bằng cách tích hợp thêm các API của TrackAsia.
 ```
