@@ -2,5 +2,6 @@
 <resources>
 <!--    <string name="base_url" translatable="false">https://maps.track-asia.com/</string>-->
     <string name="mapbox_access_token" translatable="false">pk.eyJ1Ijoic2FuZ25ndXllbjI1IiwiYSI6ImNsMGU0djFicjBmYzczam4wbnpmdjVrcGcifQ.s-R3of1BK-vomakvEGkgYw</string>
-<!--    <string name="map_style_light" translatable="false">https://maps.track-asia.com/styles/v1/streets.json?key=public</string>-->
+    <string name="map_style_dark" translatable="false">https://maps.track-asia.com/styles/v1/streets.json?key=public</string>
+    <string name="map_style_light" translatable="false">https://maps.track-asia.com/styles/v1/streets.json?key=public</string>
 </resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer frame with 0.2 opacity white -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#33FFFFFF" /> <!-- 20% opacity white -->
+            <padding
+                android:bottom="6dp"
+                android:left="6dp"
+                android:right="6dp"
+                android:top="6dp" />
+        </shape>
+    </item>
+    <!-- White border with 0.2 opacity -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#33FFFFFF" /> <!-- 20% opacity white -->
+            <padding
+                android:bottom="3dp"
+                android:left="3dp"
+                android:right="3dp"
+                android:top="3dp" />
+        </shape>
+    </item>
+    <!-- Inner circle (red) -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/colorRed" />
+        </shape>
+    </item>
+</layer-list> 

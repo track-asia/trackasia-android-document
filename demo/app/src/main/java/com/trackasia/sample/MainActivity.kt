@@ -3,6 +3,7 @@ package com.trackasia.sample
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -25,12 +26,22 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        
+        // Set up country info
         val toolbarText: TextView = findViewById(R.id.toolbarText)
-        setSupportActionBar(toolbar)
         sharedPreferences = getSharedPreferences("trackasia", Context.MODE_PRIVATE)
         var idCountry = sharedPreferences.getString("country", "vn")
         toolbarText.text = idCountry?.let { MapUtils(this).getNameContry(idCountry) }
+        
+        // Set up country selector
+        toolbarText.setOnClickListener {
+            showCountryMenu(it)
+        }
+        
+        // Set initial screen title
+        updateTitle("Single Point")
+        
+        // Set up bottom navigation
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -41,27 +52,27 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.navigation_map_cluster -> {
                     selectedFragment = MapClusterFragment()
-                    supportActionBar?.title = "Map Cluster"
+                    updateTitle("Clusters")
                 }
 
                 R.id.navigation_map_single_point -> {
                     selectedFragment = MapSinglePointFragment()
-                    supportActionBar?.title = "Map Single"
+                    updateTitle("Single Point")
                 }
 
                 R.id.navigation_map_multi_point -> {
                     selectedFragment = MapDirectionPointFragment()
-                    supportActionBar?.title = "Map Multi"
+                    updateTitle("Multi-Point")
                 }
 
                 R.id.navigation_layer -> {
                     selectedFragment = MapAnimationFragment()
-                    supportActionBar?.title = "Map Animation"
+                    updateTitle("Animation")
                 }
 
                 R.id.navigation_feature -> {
                     selectedFragment = MapFeatureFragment()
-                    supportActionBar?.title = "Map Feature"
+                    updateTitle("Features")
                 }
             }
             supportFragmentManager.beginTransaction()
@@ -71,71 +82,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        // No longer needed as we're using popup menu
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        val toolbarText: TextView = findViewById(R.id.toolbarText)
-        saveCountry(item.title.toString())
-//        if(item.title == "Malaysia"){
-//            showSnackbar("Malaysia is under development, please come back later")
-//        }
-        toolbarText.text = item.title
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-        when (currentFragment) {
-            is MapClusterFragment -> {
-                selectedFragment = MapClusterFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.nav_host_fragment, selectedFragment as MapClusterFragment)
-                    .commit()
-
-            }
-
-            is MapSinglePointFragment -> {
-                selectedFragment = MapSinglePointFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.nav_host_fragment, selectedFragment as MapSinglePointFragment)
-                    .commit()
-            }
-
-            is MapAnimationFragment -> {
-                selectedFragment = MapAnimationFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.nav_host_fragment, selectedFragment as MapAnimationFragment)
-                    .commit()
-            }
-
-            is MapDirectionPointFragment -> {
-                selectedFragment = MapDirectionPointFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.nav_host_fragment, selectedFragment as MapDirectionPointFragment)
-                    .commit()
-            }
-
-            is MapFeatureFragment -> {
-                selectedFragment = MapFeatureFragment()
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.nav_host_fragment, selectedFragment as MapFeatureFragment)
-                    .commit()
-            }
-        }
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, selectedFragment!!).commit()
-        return when (id) {
-            R.id.action_vietnam -> true
-
-            R.id.action_thailand -> true
-
-//            R.id.action_malaysia -> true
-//
-//            R.id.action_taiwain -> true
-
-            R.id.action_singapo -> true
-
-            else -> super.onOptionsItemSelected(item)
-        }
+        // No longer needed as we're handling country selection in popup menu
+        return super.onOptionsItemSelected(item)
     }
 
     private fun showSnackbar(message: String) {
@@ -155,4 +108,40 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
     }
 
+    private fun updateTitle(title: String) {
+        val titleTextView: TextView? = findViewById(R.id.toolbarTitleText)
+        titleTextView?.text = title
+    }
+
+    private fun showCountryMenu(view: View) {
+        val popup = android.widget.PopupMenu(this, view)
+        val inflater = popup.menuInflater
+        inflater.inflate(R.menu.toolbar_menu, popup.menu)
+        
+        popup.setOnMenuItemClickListener { item ->
+            val toolbarText: TextView = findViewById(R.id.toolbarText)
+            saveCountry(item.title.toString())
+            toolbarText.text = item.title
+            
+            // Refresh current fragment to update map
+            refreshCurrentFragment()
+            true
+        }
+        
+        popup.show()
+    }
+    
+    private fun refreshCurrentFragment() {
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
+        when (currentFragment) {
+            is MapClusterFragment -> selectedFragment = MapClusterFragment()
+            is MapSinglePointFragment -> selectedFragment = MapSinglePointFragment()
+            is MapAnimationFragment -> selectedFragment = MapAnimationFragment()
+            is MapDirectionPointFragment -> selectedFragment = MapDirectionPointFragment()
+            is MapFeatureFragment -> selectedFragment = MapFeatureFragment()
+        }
+        
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment, selectedFragment!!).commit()
+    }
 }

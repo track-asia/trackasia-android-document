@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "TrackAsia Simple Map"
+rootProject.name = "TrackAsiaSample"

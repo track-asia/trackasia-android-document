@@ -1,0 +1,52 @@
+{
+  "autoImportReferences": true,
+  "typeCheckingMode": "strict",
+  "organizeImportsOnSave": true,
+  "formatOnSave": true,
+  "removeUnusedImports": true,
+  "kotlinVersion": "1.8",
+  "androidStudioIntegration": true,
+  "indentSize": 4,
+  "fileHeader": "/*\n * TrackAsia Demo App\n * Copyright (c) TrackAsia\n */",
+  "excludePatterns": [
+    "**/build/**",
+    "**/.gradle/**",
+    "**/.idea/**",
+    "**/.history/**",
+    "**/keystore/**",
+    "**/local.properties",
+    "**/.DS_Store"
+  ],
+  "maxLineLength": 120,
+  "javaCompileOptions": {
+    "sourceCompatibility": "1.8",
+    "targetCompatibility": "1.8"
+  },
+  "kotlinExperimentalAPIs": true,
+  "preferKotlinStyleGuide": true,
+  "checkNullability": true,
+  "colorScheme": "default",
+  "experimentalFeatures": false,
+  "quickActions": [
+    {
+      "name": "Format Document",
+      "command": "cursor.format"
+    },
+    {
+      "name": "Organize Imports",
+      "command": "cursor.organizeImports"
+    },
+    {
+      "name": "Run Current File",
+      "command": "cursor.runCurrentFile"
+    }
+  ],
+  "snippets": {
+    "kotlin": {
+      "log": "Log.d(\"${1:TAG}\", \"${2:message}\")",
+      "activity": "class ${1:Activity}Activity : AppCompatActivity() {\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        setContentView(R.layout.activity_${2:layout})\n        ${0}\n    }\n}",
+      "fragment": "class ${1:Name}Fragment : Fragment() {\n\n    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {\n        return inflater.inflate(R.layout.fragment_${2:layout}, container, false)\n    }\n\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\n        super.onViewCreated(view, savedInstanceState)\n        ${0}\n    }\n}",
+      "trackmap": "val mapView = findViewById<TrackAsiaMap>(R.id.mapView)\nmapView.getMapAsync { map ->\n    map.setStyle(Style.MAPBOX_STREETS) { style ->\n        ${0}\n    }\n}"
+    }
+  }
+} 

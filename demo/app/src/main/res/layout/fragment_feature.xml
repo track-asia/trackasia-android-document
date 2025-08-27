@@ -23,62 +23,91 @@
         app:trackasia_uiTiltGestures="true"
         app:trackasia_uiZoomGestures="true" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnPolygon"
-        android:layout_width="@dimen/_80sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:layout_marginLeft="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_12sdp"
-        android:background="#CC3D6EBE"
-        android:text="Polygon"
-        app:layout_constraintEnd_toStartOf="@+id/btnPolyline"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/mapView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnPolyline"
-        android:layout_width="@dimen/_80sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:layout_marginLeft="@dimen/_12sdp"
-        android:layout_marginRight="@dimen/_12sdp"
-        android:background="#CC3D6EBE"
-        android:text="Polyline"
-        app:layout_constraintBottom_toBottomOf="@+id/btnPolygon"
-        app:layout_constraintEnd_toStartOf="@+id/btnAddMarkets"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnPolygon"
-        app:layout_constraintTop_toTopOf="@+id/btnPolygon" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnAddMarkets"
-        android:layout_width="@dimen/_80sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:layout_marginLeft="@dimen/_12sdp"
-        android:layout_marginRight="@dimen/_12sdp"
-        android:background="#CC3D6EBE"
-        android:text="Markets"
-        app:layout_constraintBottom_toBottomOf="@id/btnPolyline"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/controlsCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnPolyline"
-        app:layout_constraintTop_toTopOf="@+id/btnPolyline" />
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnMapCompare"
-        android:layout_width="@dimen/_186sdp"
-        android:layout_height="@dimen/_38sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginLeft="@dimen/_12sdp"
-        android:layout_marginRight="@dimen/_12sdp"
-        android:background="#CC3D6EBE"
-        android:text="Map Compare Google"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPolygon" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnPolygon"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_outline_blue"
+                    android:text="Polygon"
+                    android:textColor="@color/colorBlue" />
+
+                <Button
+                    android:id="@+id/btnPolyline"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_outline_blue"
+                    android:text="Polyline"
+                    android:textColor="@color/colorBlue" />
+
+                <Button
+                    android:id="@+id/btnAddMarkets"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_outline_blue"
+                    android:text="Markets"
+                    android:textColor="@color/colorBlue" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnMapCompare"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_38sdp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_outline_blue"
+                android:text="Map Compare Google"
+                android:textColor="@color/colorBlue" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/locationMy"
+        style="@style/CustomMiniFloatingActionButton"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:contentDescription="Vị trí của tôi"
+        android:src="@drawable/ic_location_my"
+        app:backgroundTint="@color/colorBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/map3d"
+        style="@style/CustomMiniFloatingActionButton"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:contentDescription="Chế độ 3D"
+        android:src="@drawable/ic_map_3d"
+        app:backgroundTint="@color/colorGreen"
+        app:layout_constraintBottom_toTopOf="@+id/locationMy"
+        app:layout_constraintEnd_toEndOf="@+id/locationMy"
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

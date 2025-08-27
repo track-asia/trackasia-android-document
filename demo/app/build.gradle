@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'com.google.gms.google-services'
 //    id 'androidx.navigation.safeargs.kotlin'
 }
 
@@ -16,7 +17,7 @@ android {
         minSdkVersion 26
         targetSdkVersion 35
         versionCode 10
-        versionName "1.0.1"
+        versionName "1.0.7"
         multiDexEnabled true
         ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
         externalNativeBuild {
@@ -62,6 +63,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += [
+            "-Xskip-metadata-version-check"
+        ]
     }
     buildFeatures {
         viewBinding true
@@ -71,36 +75,65 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.1'
-
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
-    implementation "androidx.activity:activity-ktx:1.3.0"
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-
-    implementation('io.github.track-asia:android-sdk:2.0.1')
-    implementation('io.github.track-asia:android-sdk-geojson:2.0.1')
-    implementation('io.github.track-asia:android-sdk-turf:2.0.1')
-    implementation('io.github.track-asia:android-plugin-annotation-v9:2.0.1')
-    implementation('io.github.track-asia:libandroid-navigation:2.0.0')
-    implementation('io.github.track-asia:libandroid-navigation-ui:2.0.0')
-
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.10"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'org.slf4j:slf4j-android:1.7.36'
+    
+    // Scalable size unit libraries for dimension resources
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    
+    // Add OkHttp dependency
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    
+    // Retrofit and networking
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
-    implementation "com.squareup.okhttp3:okhttp:4.9.0"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
-    implementation 'com.intuit.ssp:ssp-android:1.0.6'
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'com.squareup.picasso:picasso:2.3.2'
-    implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-    implementation 'com.google.android.gms:play-services-maps:17.0.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
+    implementation 'com.google.code.gson:gson:2.8.9'
 
-    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
-    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+    // Google Maps
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    
+    // Logging
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+    
+    // TrackAsia SDK components
+    implementation 'io.github.track-asia:android-sdk:2.0.2'
+    implementation 'io.github.track-asia:geojson:2.0.2'
+    implementation 'io.github.track-asia:turf:2.0.2'
+    configurations {
+        implementation.exclude group: 'io.github.track-asia', module: 'android-sdk-geojson'
+        implementation.exclude group: 'io.github.track-asia', module: 'android-sdk-turf'
+    }
+    implementation 'io.github.track-asia:android-plugin-annotation-v9:2.0.1'
+    implementation 'io.github.track-asia:navigation-core:2.0.2'
+    implementation 'io.github.track-asia:navigation-ui-android:2.0.2'
+
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
-apply plugin: 'com.google.gms.google-services'
+
+// Force all Kotlin stdlib versions to be consistent
+configurations.all {
+    resolutionStrategy {
+        force "org.jetbrains.kotlin:kotlin-stdlib:1.9.10"
+        force "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.10"
+        force "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10"
+        force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10"
+        force 'io.github.track-asia:android-sdk:2.0.2'
+        force 'io.github.track-asia:geojson:2.0.2'
+        force 'io.github.track-asia:turf:2.0.2'
+        exclude group: 'io.github.track-asia', module: 'android-sdk-geojson'
+        exclude group: 'io.github.track-asia', module: 'android-sdk-turf'
+    }
+}

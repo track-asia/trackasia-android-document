@@ -58,34 +58,27 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_6sdp"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:scaleType="center"
+        style="@style/CustomMiniFloatingActionButton"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:contentDescription="Quay lại"
         android:src="@drawable/ic_back"
-        android:visibility="visible"
         app:backgroundTint="@color/colorBlue"
-        app:fabSize="mini"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/locationMy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_12sdp"
+        style="@style/CustomMiniFloatingActionButton"
+        android:layout_marginEnd="@dimen/_12sdp"
         android:layout_marginBottom="@dimen/_12sdp"
-        android:scaleType="center"
+        android:contentDescription="Vị trí của tôi"
         android:src="@drawable/ic_location_my"
-        android:tint="@android:color/white"
-        android:visibility="visible"
         app:backgroundTint="@color/colorBlue"
-        app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:tint="@android:color/white" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

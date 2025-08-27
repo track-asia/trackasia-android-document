@@ -1,6 +1,6 @@
 # **TRACK ASIA TÍCH HỢP**
 
-# Tích hợp TrackasiaSample vào Android
+# Tích hợp TrackAsiaSample vào Android
 
 ## 1. Cấu hình Gradle
 
@@ -34,12 +34,10 @@ Thêm dependencies cho TrackAsia SDK và các dịch vụ liên quan:
 
 ```gradle
 dependencies {
-    implementation('io.github.track-asia:android-sdk:2.0.1')
-    implementation('io.github.track-asia:android-sdk-geojson:2.0.1')
-    implementation('io.github.track-asia:android-sdk-turf:2.0.1')
+    implementation('io.github.track-asia:android-sdk:2.0.2')
+    implementation('io.github.track-asia:geojson:2.0.1')
+    implementation('io.github.track-asia:turf:2.0.1')
     implementation('io.github.track-asia:android-plugin-annotation-v9:2.0.1')
-    implementation('io.github.track-asia:libandroid-navigation:2.0.0')
-    implementation('io.github.track-asia:libandroid-navigation-ui:2.0.0')
 }
 ```
 
@@ -66,7 +64,7 @@ Thêm `MapView` vào file layout XML:
     app:trackasia_uiZoomGestures="true" />
 ```
 
-## 3. Khởi tạo TrackasiaSample trong Activity/Fragment
+## 3. Khởi tạo TrackAsiaSample trong Activity/Fragment
 
 ### Import thư viện cần thiết:
 
@@ -83,7 +81,7 @@ import com.trackasia.android.navigation.ui.NavigationMapRoute
 ### Khai báo biến:
 
 ```kotlin
-private lateinit var mapboxMap: TrackAsiaMap
+private lateinit var trackasiaMap: TrackAsiaMap
 private var styleUrl = "https://maps.track-asia.com/styles/v1/streets.json?key=public_key"
 private lateinit var navigationMapRoute: NavigationMapRoute
 ```
@@ -102,7 +100,7 @@ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     
     mapView.onCreate(savedInstanceState)
     mapView.getMapAsync { map ->
-        this.mapboxMap = map
+        this.trackasiaMap = map
         
         map.setStyle(Style.Builder().fromUri(styleUrl)) { style ->
             enableLocationComponent(style)
@@ -182,5 +180,5 @@ override fun onSaveInstanceState(outState: Bundle) {
 
 ## 7. Kết luận
 ```kotlin
-Với hướng dẫn trên, bạn đã có thể tích hợp TrackasiaSample vào ứng dụng Android, thiết lập bản đồ với giao diện tuỳ chỉnh, và quản lý vòng đời của `MapView` đúng cách. Bạn có thể mở rộng tính năng như hiển thị marker, vẽ tuyến đường, và sử dụng navigation bằng cách tích hợp thêm các API của TrackAsia.
+Với hướng dẫn trên, bạn đã có thể tích hợp TrackAsiaSample vào ứng dụng Android, thiết lập bản đồ với giao diện tuỳ chỉnh, và quản lý vòng đời của `MapView` đúng cách. Bạn có thể mở rộng tính năng như hiển thị marker, vẽ tuyến đường, và sử dụng navigation bằng cách tích hợp thêm các API của TrackAsia.
 ```

@@ -19,7 +19,6 @@ import android.view.animation.LinearInterpolator
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.google.gson.JsonObject
-import com.mapbox.core.constants.Constants.PRECISION_6
 import com.trackasia.android.TrackAsia
 import com.trackasia.android.camera.CameraPosition
 import com.trackasia.android.camera.CameraUpdateFactory
@@ -39,8 +38,9 @@ import com.trackasia.geojson.FeatureCollection
 import com.trackasia.geojson.LineString
 import com.trackasia.geojson.Point
 import com.trackasia.navigation.android.navigation.ui.v5.route.NavigationRoute
-import com.trackasia.navigation.android.navigation.v5.models.DirectionsCriteria
-import com.trackasia.navigation.android.navigation.v5.models.DirectionsResponse
+import com.trackasia.navigation.core.models.DirectionsResponse
+import com.trackasia.navigation.core.models.UnitType
+import com.trackasia.navigation.core.utils.Constants.PRECISION_6
 import com.trackasia.sample.databinding.FragmentMapAnimationBinding
 import com.trackasia.sample.utils.MapUtils
 import com.trackasia.turf.TurfMeasurement
@@ -57,7 +57,7 @@ class MapAnimationFragment : Fragment(), PermissionsListener {
 
     private var _binding: FragmentMapAnimationBinding? = null
     private var permissionsManager: PermissionsManager = PermissionsManager(this)
-    private lateinit var mapboxMap: TrackAsiaMap
+    private lateinit var trackasiaMap: TrackAsiaMap
     private val PROPERTY_BEARING = "bearing"
     private val randomCars: MutableList<Car> = ArrayList()
     private var style: Style? = null
@@ -121,7 +121,7 @@ class MapAnimationFragment : Fragment(), PermissionsListener {
                         MapUtils(requireActivity()).enableLocationComponent(
                             style,
                             idCountry,
-                            mapboxMap,
+                            trackasiaMap,
                             permissionsManager,
                             latLngLocation!!,
                             zoomLocation
@@ -131,7 +131,7 @@ class MapAnimationFragment : Fragment(), PermissionsListener {
                         animateTaxi()
                     }
                 }
-                this.mapboxMap = map
+                this.trackasiaMap = map
                 cameraAnimation(latLngLocation!!)
             } catch (e: Exception) {
                 Log.d("ERROR MAP:", e.toString())
@@ -143,7 +143,7 @@ class MapAnimationFragment : Fragment(), PermissionsListener {
         try {
             val cameraPosition = CameraPosition.Builder().target(point).zoom(zoomLocation).build()
             val cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition)
-            mapboxMap.animateCamera(cameraUpdate, 1000)
+            trackasiaMap.animateCamera(cameraUpdate, 1000)
         } catch (e: Exception) {
             Log.d("ERROR CAMERA", e.toString())
         }
@@ -155,12 +155,12 @@ class MapAnimationFragment : Fragment(), PermissionsListener {
 
     override fun onPermissionResult(granted: Boolean) {
         if (granted) {
-            mapboxMap.getStyle { style ->
+            trackasiaMap.getStyle { style ->
                 if (activity != null) {
                     MapUtils(requireActivity()).enableLocationComponent(
                         style,
                         idCountry,
-                        mapboxMap,
+                        trackasiaMap,
                         permissionsManager,
                         latLngLocation!!,
                         zoomLocation
@@ -186,7 +186,7 @@ class MapAnimationFragment : Fragment(), PermissionsListener {
     private val latLngInBounds: LatLng
         get() {
             try {
-                val userLocation = mapboxMap.locationComponent.lastKnownLocation
+                val userLocation = trackasiaMap.locationComponent.lastKnownLocation
                 var lat = userLocation!!.latitude + generateRandomDecimal()
                 var lng = userLocation!!.longitude + generateRandomDecimal()
                 Log.d("LAT CAR---->", lat.toString())
@@ -217,7 +217,7 @@ class MapAnimationFragment : Fragment(), PermissionsListener {
             builder.include(latLng)
             return builder.build()
         } catch (e: Exception) {
-            return mapboxMap!!.projection.visibleRegion.latLngBounds
+            return trackasiaMap!!.projection.visibleRegion.latLngBounds
         }
     }
 
@@ -522,7 +522,7 @@ class MapAnimationFragment : Fragment(), PermissionsListener {
     private fun drawRoute(origin: Point?, destination: Point?, index: Int) {
         if (origin != null && destination != null) {
             var navigation = NavigationRoute.builder(context).accessToken(getString(R.string.mapbox_access_token)).origin(origin)
-                .voiceUnits(DirectionsCriteria.METRIC).alternatives(true).profile("car")
+                .voiceUnits(UnitType.METRIC).alternatives(true).profile("car")
                 .baseUrl(MapUtils(requireActivity()).urlDomain(idCountry)).destination(destination)
             navigation.build().getRoute(object : Callback<DirectionsResponse> {
                 override fun onResponse(

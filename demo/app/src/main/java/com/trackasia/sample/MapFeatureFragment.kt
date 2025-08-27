@@ -40,7 +40,7 @@ import java.util.Random
 class MapFeatureFragment : Fragment(), PermissionsListener, View.OnClickListener {
 
     private var _binding: FragmentFeatureBinding? = null
-    private lateinit var mapboxMap: TrackAsiaMap
+    private lateinit var trackasiaMap: TrackAsiaMap
     private var polygon: Polygon? = null
     private val polylines: List<Polyline>? = null
     private var locations: MutableList<LatLng> = mutableListOf()
@@ -103,13 +103,13 @@ class MapFeatureFragment : Fragment(), PermissionsListener, View.OnClickListener
                 ) { style ->
                     if(activity != null) {
                         MapUtils(requireActivity()).enableLocationComponent(
-                            style, idCountry, mapboxMap,
+                            style, idCountry, trackasiaMap,
                             permissionsManager,
                             latLngLocation!!, zoomLocation
                         )
                     }
                 }
-                this.mapboxMap = map
+                this.trackasiaMap = map
                 cameraAnimation(latLngLocation!!)
             } catch (e: Exception) {
                 Log.d("ERROR MAP:", e.toString())
@@ -122,7 +122,7 @@ class MapFeatureFragment : Fragment(), PermissionsListener, View.OnClickListener
         try {
             val cameraPosition = CameraPosition.Builder().target(point).zoom(zoomLocation).build()
             val cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition)
-            mapboxMap.animateCamera(cameraUpdate, 1000)
+            trackasiaMap.animateCamera(cameraUpdate, 1000)
         } catch (e: Exception) {
             Log.d("ERROR CAMERA", e.toString())
         }
@@ -130,12 +130,12 @@ class MapFeatureFragment : Fragment(), PermissionsListener, View.OnClickListener
 
     private fun initControl() {
         binding.btnPolygon.setOnClickListener {
-            mapboxMap!!.addPolygon(
+            trackasiaMap!!.addPolygon(
                 PolygonOptions().addAll(Config.STAR_SHAPE_POINTS).fillColor(Config.BLUE_COLOR)
             )
         }
         binding.btnPolyline.setOnClickListener {
-            mapboxMap.addPolylines(polylineOptions);
+            trackasiaMap.addPolylines(polylineOptions);
         }
         binding.btnAddMarkets.setOnClickListener {
             locations.add(LatLng(11.105950, 106.656514))
@@ -173,12 +173,12 @@ class MapFeatureFragment : Fragment(), PermissionsListener, View.OnClickListener
     override fun onPermissionResult(granted: Boolean) {
         if (granted) {
 
-            mapboxMap.getStyle { style ->
+            trackasiaMap.getStyle { style ->
                 if(activity != null) {
                     MapUtils(requireActivity()).enableLocationComponent(
                         style,
                         idCountry,
-                        mapboxMap,
+                        trackasiaMap,
                         permissionsManager,
                         latLngLocation!!, zoomLocation
                     )
@@ -263,10 +263,10 @@ class MapFeatureFragment : Fragment(), PermissionsListener, View.OnClickListener
 
     private fun showMarkers(amount: Int) {
         var amount = amount
-        if (mapboxMap == null || locations == null || binding.mapView.isDestroyed) {
+        if (trackasiaMap == null || locations == null || binding.mapView.isDestroyed) {
             return
         }
-        mapboxMap.clear()
+        trackasiaMap.clear()
         if (locations!!.size < amount) {
             amount = locations!!.size
         }
@@ -287,7 +287,7 @@ class MapFeatureFragment : Fragment(), PermissionsListener, View.OnClickListener
                     .snippet(formatter.format(latLng.latitude) + "`, " + formatter.format(latLng.longitude))
             )
         }
-        mapboxMap.addMarkers(markerOptionsList)
+        trackasiaMap.addMarkers(markerOptionsList)
     }
 
     private class LoadLocationTask constructor(

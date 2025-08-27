@@ -3,21 +3,21 @@
     <item
         android:id="@+id/navigation_map_single_point"
         android:icon="@drawable/ic_map_single"
-        android:title="Map view" />
+        android:title="Single Point" />
     <item
         android:id="@+id/navigation_map_multi_point"
         android:icon="@drawable/ic_map_multi"
-        android:title="Map point" />
+        android:title="Multi-Point" />
     <item
         android:id="@+id/navigation_map_cluster"
         android:icon="@drawable/ic_map_cluster"
-        android:title="Map Cluster" />
+        android:title="Clusters" />
     <item
         android:id="@+id/navigation_layer"
         android:icon="@drawable/ic_map_animation"
-        android:title="Map Animation" />
+        android:title="Animation" />
     <item
         android:id="@+id/navigation_feature"
         android:icon="@drawable/ic_feature"
-        android:title="Map Feature" />
+        android:title="Features" />
 </menu>

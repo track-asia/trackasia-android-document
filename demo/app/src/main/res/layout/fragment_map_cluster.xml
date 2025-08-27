@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,45 +12,188 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:trackasia_cameraZoom="12"
-        app:trackasia_uiAttribution="true"
-        app:trackasia_uiCompass="true"
-        app:trackasia_uiLogo="true"
-        app:trackasia_uiRotateGestures="true"
-        app:trackasia_uiScrollGestures="true"
-        app:trackasia_uiTiltGestures="true"
-        app:trackasia_uiZoomGestures="true"
         app:trackasia_enableTilePrefetch="true"
         app:trackasia_enableZMediaOverlay="true"
         app:trackasia_renderTextureMode="true"
         app:trackasia_renderTextureTranslucentSurface="true"
-        app:trackasia_uiDoubleTapGestures="true"/>
+        app:trackasia_uiAttribution="true"
+        app:trackasia_uiCompass="true"
+        app:trackasia_uiDoubleTapGestures="true"
+        app:trackasia_uiLogo="true"
+        app:trackasia_uiRotateGestures="true"
+        app:trackasia_uiScrollGestures="true"
+        app:trackasia_uiTiltGestures="true"
+        app:trackasia_uiZoomGestures="true" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_route"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/searchCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_marker" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tl_address_cluster"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Tìm kiếm địa điểm"
+                    app:boxCornerRadiusBottomEnd="6dp"
+                    app:boxCornerRadiusBottomStart="6dp"
+                    app:boxCornerRadiusTopEnd="6dp"
+                    app:boxCornerRadiusTopStart="6dp"
+                    app:boxStrokeColor="@color/colorBlue"
+                    app:boxStrokeWidth="1dp"
+                    app:endIconMode="custom"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    app:hintTextColor="@color/colorBlue">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/edt_address_cluster"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/_6sdp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
+                        android:textSize="13sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/btn_my_location_cluster"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_location_my"
+                    android:tint="@color/colorBlue" />
+
+                <ImageButton
+                    android:id="@+id/btnClearCluster"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_clear"
+                    android:tint="@color/colorRed"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Progress Indicator -->
+    <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchCard" />
+
+    <TextView
+        android:id="@+id/progressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/white"
+        android:padding="4dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressBar" />
+
+    <!-- Control buttons container with common backdrop -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/buttons_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:src="@drawable/ic_directions_bus_black"
-        app:backgroundTint="@android:color/white"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_style"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/fab_route"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:src="@drawable/ic_layers"
-        app:layout_constraintBottom_toTopOf="@+id/fab_route"
-        app:layout_constraintLeft_toLeftOf="@+id/fab_route"
-        app:layout_constraintRight_toRightOf="@+id/fab_route"
-        app:backgroundTint="@color/colorGreen"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- POI button -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_poi"
+                style="@style/MapControlFab"
+                android:contentDescription="Hiển thị điểm POI"
+                android:src="@drawable/ic_marker"
+                app:tint="@color/colorBlue" />
+
+            <!-- Disease button -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_disease"
+                style="@style/MapControlFab"
+                android:contentDescription="@string/pest_disease_map"
+                android:src="@drawable/ic_pest"
+                app:tint="@color/colorRed" />
+
+            <!-- Bus route button -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_route"
+                style="@style/MapControlFab"
+                android:contentDescription="Hiển thị điểm dừng xe buýt"
+                android:src="@drawable/ic_directions_bus_black"
+                android:visibility="gone"
+                app:tint="@color/colorBlue" />
+
+            <!-- Style button -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_style"
+                style="@style/MapControlFab"
+                android:contentDescription="Thay đổi kiểu bản đồ"
+                android:src="@drawable/ic_layers"
+                app:backgroundTint="@color/colorGreen"
+                app:tint="@android:color/white" />
+
+            <!-- Location button -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_my_location"
+                style="@style/MapControlFab"
+                android:contentDescription="Hiển thị vị trí của tôi"
+                android:src="@drawable/ic_my_location"
+                app:tint="@color/colorBlue" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,480 +27,550 @@
         app:trackasia_uiTiltGestures="true"
         app:trackasia_uiZoomGestures="true" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clPointBefore"
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/searchCard"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_12sdp"
-        android:paddingRight="@dimen/_12sdp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical"
+            android:padding="8dp">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tl_address_from"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginRight="@dimen/_12sdp"
-                android:theme="@style/TextLabel"
-                app:hintEnabled="false"
-                app:layout_constraintTop_toTopOf="parent">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                    android:id="@+id/edt_address_from"
-                    style="@style/edit_text_default"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_marker" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tl_address_from"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edt_disable_input"
-                    android:ellipsize="end"
-                    android:hint="Start point"
-                    android:imeOptions="actionNext"
-                    android:nextFocusRight="@+id/edt_address_to"
-                    android:paddingTop="@dimen/_16sdp"
-                    android:paddingRight="@dimen/_50sdp"
-                    android:singleLine="false"
-                    android:textColor="@color/colorBlue" />
+                    android:layout_weight="1"
+                    app:endIconMode="custom"
+                    app:hintEnabled="true"
+                    app:hintAnimationEnabled="true"
+                    app:hintTextColor="@color/colorBlue"
+                    app:boxStrokeColor="@color/colorBlue"
+                    app:boxStrokeWidth="1dp"
+                    android:hint="Điểm xuất phát"
+                    app:boxCornerRadiusBottomEnd="6dp"
+                    app:boxCornerRadiusBottomStart="6dp"
+                    app:boxCornerRadiusTopEnd="6dp"
+                    app:boxCornerRadiusTopStart="6dp">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/edt_address_from"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:imeOptions="actionNext"
+                        android:paddingStart="@dimen/_6sdp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textSize="13sp" />
 
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right">
-
-                <ImageButton
-                    android:id="@+id/btnClear1"
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:layout_marginRight="@dimen/_12sdp"
-                    android:background="@drawable/ic_clear"
-                    android:paddingRight="@dimen/_30sdp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right">
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageButton
                     android:id="@+id/btn_my_location1"
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:layout_marginRight="@dimen/_12sdp"
-                    android:background="@drawable/ic_marker"
-                    android:paddingRight="@dimen/_30sdp"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </LinearLayout>
-
-        </FrameLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clPointAfter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/_12sdp"
-        android:paddingRight="@dimen/_12sdp"
-        app:layout_constraintTop_toBottomOf="@+id/clPointBefore">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tl_address_to"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_6sdp"
-                android:layout_marginRight="@dimen/_12sdp"
-                android:hint="End point"
-                android:theme="@style/TextLabel"
-                app:hintEnabled="false"
-                app:layout_constraintTop_toBottomOf="@+id/tl_address_from">
-
-                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                    android:id="@+id/edt_address_to"
-                    style="@style/edit_text_default"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edt_disable_input"
-                    android:ellipsize="end"
-                    android:hint="End point"
-                    android:imeOptions="actionNext"
-                    android:paddingTop="@dimen/_16sdp"
-                    android:paddingRight="@dimen/_50sdp"
-                    android:singleLine="false"
-                    android:textColor="@color/colorBlue" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right">
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_location_my"
+                    android:tint="@color/colorBlue" />
 
                 <ImageButton
-                    android:id="@+id/btnClear2"
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:layout_marginRight="@dimen/_12sdp"
-                    android:background="@drawable/ic_clear"
-                    android:paddingRight="@dimen/_30sdp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:id="@+id/btnClear1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_clear"
+                    android:tint="@color/colorRed"
+                    android:visibility="gone" />
             </LinearLayout>
 
-            <LinearLayout
-
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical|right">
+                android:layout_height="1dp"
+                android:layout_marginVertical="4dp"
+                android:background="@color/colorGray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_marker"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tl_address_to"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:endIconMode="custom"
+                    app:hintEnabled="true"
+                    app:hintAnimationEnabled="true"
+                    app:hintTextColor="@color/colorGreen"
+                    app:boxStrokeColor="@color/colorGreen"
+                    app:boxStrokeWidth="1dp"
+                    android:hint="Điểm đến"
+                    app:boxCornerRadiusBottomEnd="6dp"
+                    app:boxCornerRadiusBottomStart="6dp"
+                    app:boxCornerRadiusTopEnd="6dp"
+                    app:boxCornerRadiusTopStart="6dp">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/edt_address_to"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_6sdp"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="0dp"
+                        android:maxLines="1"
+                        android:textSize="13sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageButton
                     android:id="@+id/btn_my_location2"
-                    android:layout_width="@dimen/_24sdp"
-                    android:layout_height="@dimen/_24sdp"
-                    android:layout_marginTop="@dimen/_4sdp"
-                    android:layout_marginRight="@dimen/_12sdp"
-                    android:background="@drawable/ic_marker"
-                    android:paddingRight="@dimen/_30sdp"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="4dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_location_my"
+                    android:tint="@color/colorGreen" />
+
+                <ImageButton
+                    android:id="@+id/btnClear2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_clear"
+                    android:tint="@color/colorRed"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/clDirection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchCard"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:id="@+id/clDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_route_primary"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_navigation_24"
+                    android:tint="@color/colorBlue" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="4dp">
+                        
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tuyến đường nhanh nhất"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="14sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Khoảng cách: "
+                            android:textColor="@color/colorBlack70"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/textDistanceValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0km"
+                            android:textColor="@color/colorBlack70"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Thời gian: "
+                            android:textColor="@color/colorBlack70"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/textTimeValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 phút"
+                            android:textColor="@color/colorBlack70"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/clearPoints"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:contentDescription="Xóa tất cả điểm"
+                        android:src="@drawable/ic_delete_black_24dp"
+                        app:backgroundTint="@color/colorRed"
+                        app:fabCustomSize="@dimen/_24sdp"
+                        app:maxImageSize="@dimen/_14sdp"
+                        app:tint="@android:color/white" />
+                </FrameLayout>
+
             </LinearLayout>
 
-        </FrameLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clDirection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_24sdp"
-        android:layout_marginTop="@dimen/_6sdp"
-        android:layout_marginRight="@dimen/_24sdp"
-        android:background="@color/colorGreen60"
-        android:paddingTop="@dimen/_6sdp"
-        android:paddingBottom="@dimen/_6sdp"
-        app:layout_constraintStart_toStartOf="@+id/clPointAfter"
-        app:layout_constraintTop_toBottomOf="@+id/clPointAfter">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clDistance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textDistance"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/clDistance2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_24sdp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:text="Distance:"
-                android:textColor="@color/colorBlue"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textDistanceValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_6sdp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:text="0Km"
-                android:textColor="@color/colorBlue"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textDistance"
-                app:layout_constraintStart_toEndOf="@+id/textDistance"
-                app:layout_constraintTop_toTopOf="@+id/textDistance" />
-
-            <TextView
-                android:id="@+id/textTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:text="Time:"
-                android:textColor="@color/colorBlue"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textDistanceValue"
-                app:layout_constraintStart_toEndOf="@+id/textDistanceValue"
-                app:layout_constraintTop_toTopOf="@+id/textDistanceValue" />
-
-            <TextView
-                android:id="@+id/textTimeValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6sdp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:text="20s"
-                android:textColor="@color/colorBlue"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textTime"
-                app:layout_constraintStart_toEndOf="@+id/textTime"
-                app:layout_constraintTop_toTopOf="@+id/textTime" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginRight="@dimen/_12sdp"
-                android:text="Click on the red location on the map to display details"
-                android:textColor="@color/colorRed"
-                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_route_secondary"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="8dp"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:visibility="visible">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_navigation_24"
+                    android:tint="@color/colorGray" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clDistance2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:layout_constraintStart_toStartOf="@+id/clDistance"
-            app:layout_constraintTop_toBottomOf="@+id/clDistance">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textDistance2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_24sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:text="Distance:"
-                android:textColor="@color/colorBlack70"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tuyến đường thay thế"
+                        android:textColor="@color/colorBlack70"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textDistanceValue2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_6sdp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:text="0Km"
-                android:textColor="@color/colorBlack70"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textDistance2"
-                app:layout_constraintStart_toEndOf="@+id/textDistance2"
-                app:layout_constraintTop_toTopOf="@+id/textDistance2" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textTime2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:text="Time:"
-                android:textColor="@color/colorBlack70"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textDistanceValue2"
-                app:layout_constraintStart_toEndOf="@+id/textDistanceValue2"
-                app:layout_constraintTop_toTopOf="@+id/textDistanceValue2" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Khoảng cách: "
+                            android:textColor="@color/colorBlack70"
+                            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/textTimeValue2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6sdp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:text="20s"
-                android:textColor="@color/colorBlack70"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textTime2"
-                app:layout_constraintStart_toEndOf="@+id/textTime2"
-                app:layout_constraintTop_toTopOf="@+id/textTime2" />
+                        <TextView
+                            android:id="@+id/textDistanceValue2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0km"
+                            android:textColor="@color/colorBlack70"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Thời gian: "
+                            android:textColor="@color/colorBlack70"
+                            android:textSize="12sp" />
 
+                        <TextView
+                            android:id="@+id/textTimeValue2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 phút"
+                            android:textColor="@color/colorBlack70"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginRight="@dimen/_12sdp"
-            android:text="Click on the red location on the map to display details"
-            android:textColor="@color/colorRed"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAddressRouter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--    <com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView-->
-    <!--        android:id="@+id/instructionView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"/>-->
+    <!-- Right side FAB menu with card background -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fabCardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <!--    <com.mapbox.services.android.navigation.ui.v5.instruction.maneuver.ManeuverView-->
-    <!--        android:id="@+id/maneuverView"-->
-    <!--        android:layout_width="40dp"-->
-    <!--        android:layout_height="40dp"-->
-    <!--        android:layout_margin="8dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <!--    <com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView-->
-    <!--        android:id="@+id/instructionsView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintTop_toTopOf="parent">-->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/map3d"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                app:fabCustomSize="@dimen/_24sdp"
+                app:maxImageSize="@dimen/_14sdp"
+                android:layout_margin="2dp"
+                android:contentDescription="Chế độ 3D"
+                android:src="@drawable/ic_map_3d"
+                app:backgroundTint="@color/colorGreen"
+                app:tint="@android:color/white" />
 
-    <!--       -->
-    <!--    </com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView>-->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/locationMy"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                app:fabCustomSize="@dimen/_24sdp"
+                app:maxImageSize="@dimen/_14sdp"
+                android:layout_margin="2dp"
+                android:contentDescription="Vị trí của tôi"
+                android:src="@drawable/ic_location_my"
+                app:backgroundTint="@color/colorBlue"
+                app:tint="@android:color/white" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_distance"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginRight="@dimen/_12sdp"-->
-    <!--        android:paddingRight="@dimen/_6sdp"-->
-    <!--        android:textColor="@color/colorWhite"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:ignore="MissingConstraints" />-->
+    <!-- Left side navigation controls with card background -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/navigationCardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="40dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navigationControls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <LinearLayout
+                android:id="@+id/simulateRouteLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mô phỏng"
+                    android:textColor="@color/colorBlack70"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/simulateSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGray" />
+
+            <LinearLayout
+                android:id="@+id/ctlTrackNavigationRouter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TrackAsia"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/trackNavigationRouter"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    app:fabCustomSize="@dimen/_24sdp"
+                    app:maxImageSize="@dimen/_14sdp"
+                    android:layout_margin="2dp"
+                    android:contentDescription="TrackAsia Navigation"
+                    android:src="@drawable/ic_navigation_24"
+                    app:backgroundTint="@color/colorBlue"
+                    app:tint="@android:color/white" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorGray" />
+
+            <LinearLayout
+                android:id="@+id/ctlNavigationRouter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Google"
+                    android:textColor="@color/colorGreen"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/navigationRouter"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    app:fabCustomSize="@dimen/_24sdp"
+                    app:maxImageSize="@dimen/_14sdp"
+                    android:layout_margin="2dp"
+                    android:contentDescription="Google Navigation"
+                    android:src="@drawable/ic_navigation_24"
+                    app:backgroundTint="@color/colorGreen"
+                    app:tint="@android:color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/startRouteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_6sdp"
-        android:backgroundTint="#CC25C6BA"
-        android:paddingLeft="@dimen/_8sdp"
-        android:paddingRight="@dimen/_8sdp"
-        android:text="Navigation"
-        android:textSize="@dimen/_9ssp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/clearPoints"
-        app:layout_constraintEnd_toStartOf="@+id/clearPoints"
-        app:layout_constraintTop_toTopOf="@+id/clearPoints" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/navigationRouter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_12sdp"
-        android:scaleType="center"
-        android:src="@drawable/ic_navigation_24"
-        android:tint="@android:color/white"
-        android:visibility="visible"
-        app:backgroundTint="@color/colorBlue"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/map3d"
-        app:layout_constraintEnd_toEndOf="@+id/map3d"
-        app:layout_constraintStart_toStartOf="@+id/map3d" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/map3d"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_12sdp"
-        android:scaleType="center"
-        android:src="@drawable/ic_map_3d"
-        android:tint="@android:color/white"
-        android:visibility="visible"
-        app:backgroundTint="@color/colorGreen"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/locationMy"
-        app:layout_constraintEnd_toEndOf="@+id/locationMy"
-        app:layout_constraintStart_toStartOf="@+id/locationMy" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/clearPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_12sdp"
-        android:scaleType="center"
-        android:src="@drawable/ic_delete_black_24dp"
-        android:tint="@android:color/white"
-        android:visibility="visible"
-        app:backgroundTint="@color/colorRed"
-        app:fabSize="mini"
+    <FrameLayout
+        android:id="@+id/poiSearchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/locationMy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_12sdp"
-        android:scaleType="center"
-        android:src="@drawable/ic_location_my"
-        android:tint="@android:color/white"
-        android:visibility="visible"
-        app:backgroundTint="@color/colorBlue"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/clearPoints"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintRight_toRightOf="parent" />
+        <include 
+            android:id="@+id/poiSearchLayout"
+            layout="@layout/layout_poi_search" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

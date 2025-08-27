@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!-- Header with title and close button -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/tvPoiResultsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Nhà hàng gần đây" />
+
+        <TextView
+            android:id="@+id/tvPoiResultsCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/tvPoiResultsTitle"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            tools:text="(10)" />
+
+        <ImageButton
+            android:id="@+id/btnClosePoiResults"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/close"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:tint="@color/white" />
+    </RelativeLayout>
+
+    <!-- List of POI results - Fixed height instead of weight -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPoiResults"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:clipToPadding="false"
+        android:padding="8dp"
+        android:background="@color/white"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        tools:listitem="@layout/item_poi_result" />
+
+    <!-- Bottom button to show all markers on map -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:paddingTop="8dp"
+        android:background="@color/white">
+        
+        <Button
+            android:id="@+id/btnShowAllMarkersOnMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/MapButton"
+            android:text="Hiển thị tất cả trên bản đồ"
+            android:drawableStart="@drawable/ic_map_24"
+            android:drawablePadding="8dp"
+            android:gravity="center" />
+    </FrameLayout>
+
+</LinearLayout> 

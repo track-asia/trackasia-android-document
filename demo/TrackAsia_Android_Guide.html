@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tài liệu hướng dẫn tích hợp TrackAsia Map vào Android</title>
+  <style>
+    body { font-family: -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color:#1a1a1a; padding: 24px; }
+    h1,h2,h3 { color:#0f172a; }
+    code, pre { background:#f6f8fa; border:1px solid #e5e7eb; border-radius:6px; padding: 12px; display:block; overflow:auto; }
+    .toc a { text-decoration:none; }
+    img { border:1px solid #e5e7eb; border-radius:8px; margin: 8px; }
+    .note { background:#eef6ff; border-left:4px solid #3b82f6; padding:10px 12px; }
+  </style>
+</head>
+<body>
+  <h1>Hướng dẫn tích hợp TrackAsia Map vào Android</h1>
+  <p>Tài liệu dành cho Tech Lead/PM/Senior Dev. Mục tiêu: tích hợp nhanh TrackAsia Map (Map + Navigation) vào ứng dụng Android, chuẩn hoá cấu hình, vòng đời, và best practices.</p>
+
+  <h2>Mục lục</h2>
+  <ol class="toc">
+    <li><a href="#env">Yêu cầu môi trường</a></li>
+    <li><a href="#gradle">Cài đặt SDK & Gradle</a></li>
+    <li><a href="#manifest">Quyền & AndroidManifest</a></li>
+    <li><a href="#layout">Thêm MapView vào layout XML</a></li>
+    <li><a href="#init">Khởi tạo map trong Fragment/Activity</a></li>
+    <li><a href="#lifecycle">Quản lý vòng đời MapView</a></li>
+    <li><a href="#location">Quyền vị trí & vị trí người dùng</a></li>
+    <li><a href="#features">Marker, Camera, Style</a></li>
+    <li><a href="#navigation">Routing & Navigation</a></li>
+    <li><a href="#screenshots">Hình minh hoạ</a></li>
+    <li><a href="#checklist">Checklist tích hợp nhanh</a></li>
+  </ol>
+
+  <h2 id="env">1) Yêu cầu môi trường</h2>
+  <ul>
+    <li>Android Studio mới (AGP 8.4.x), Kotlin 1.9.x</li>
+    <li>compileSdk 34, targetSdk 35, minSdk 26</li>
+  </ul>
+
+  <h2 id="gradle">2) Cài đặt SDK & Gradle</h2>
+  <p>Thêm repositories trong dự án (google(), mavenCentral()). Thêm dependencies TrackAsia trong module app:</p>
+  <pre><code>// app/build.gradle (trích)
+dependencies {
+  implementation 'io.github.track-asia:android-sdk:2.0.2'
+  implementation 'io.github.track-asia:geojson:2.0.2'
+  implementation 'io.github.track-asia:turf:2.0.2'
+  implementation 'io.github.track-asia:android-plugin-annotation-v9:2.0.1'
+  implementation 'io.github.track-asia:navigation-core:2.0.2'
+  implementation 'io.github.track-asia:navigation-ui-android:2.0.2'
+}
+</code></pre>
+  <div class="note">Khuyến nghị quản lý API key bằng Secrets Gradle Plugin, không hardcode key trong mã nguồn.</div>
+
+  <h2 id="manifest">3) Quyền & AndroidManifest</h2>
+  <ul>
+    <li>Bắt buộc: INTERNET, ACCESS_NETWORK_STATE</li>
+    <li>Nếu dùng vị trí: ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION</li>
+    <li>Nếu dùng UI điều hướng: khai báo Activity navigation của TrackAsia</li>
+  </ul>
+
+  <h2 id="layout">4) Thêm MapView vào layout XML</h2>
+  <pre><code>&lt;com.trackasia.android.maps.MapView
+    android:id="@+id/mapView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:trackasia_cameraZoom="12"
+    app:trackasia_uiCompass="true"
+    app:trackasia_uiZoomGestures="true" /&gt;
+</code></pre>
+
+  <h2 id="init">5) Khởi tạo map trong Fragment/Activity</h2>
+  <pre><code>// Kotlin (tối giản)
+private lateinit var trackasiaMap: com.trackasia.android.maps.TrackAsiaMap
+private var styleUrl = "https://maps.track-asia.com/styles/v1/streets.json?key=public"
+
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+  com.trackasia.android.TrackAsia.getInstance(requireActivity())
+  val mapView = view.findViewById&lt;com.trackasia.android.maps.MapView&gt;(R.id.mapView)
+  mapView.onCreate(savedInstanceState)
+  mapView.getMapAsync { map -&gt;
+    trackasiaMap = map
+    map.setStyle(com.trackasia.android.maps.Style.Builder().fromUri(styleUrl)) { style -&gt;
+      // TODO: thêm marker, route...
+    }
+  }
+}
+</code></pre>
+
+  <h2 id="lifecycle">6) Quản lý vòng đời MapView</h2>
+  <ul>
+    <li>onStart → mapView.onStart()</li>
+    <li>onResume → mapView.onResume()</li>
+    <li>onPause → mapView.onPause()</li>
+    <li>onStop → mapView.onStop()</li>
+    <li>onDestroyView/Destroy → mapView.onDestroy()</li>
+    <li>onLowMemory → mapView.onLowMemory()</li>
+    <li>onSaveInstanceState → mapView.onSaveInstanceState(outState)</li>
+  </ul>
+
+  <h2 id="location">7) Quyền vị trí & vị trí người dùng</h2>
+  <p>Xin quyền runtime bằng PermissionsManager. Lấy vị trí hiện tại qua <code>trackasiaMap.locationComponent.lastKnownLocation</code>.</p>
+
+  <h2 id="features">8) Marker, Camera, Style</h2>
+  <pre><code>// Thêm marker (minh hoạ)
+val iconFactory = com.trackasia.android.annotations.IconFactory.getInstance(context)
+val marker = com.trackasia.android.annotations.MarkerOptions()
+  .position(com.trackasia.android.geometry.LatLng(21.028, 105.854))
+trackasiaMap.addMarker(marker)
+
+// Camera
+val update = com.trackasia.android.camera.CameraUpdateFactory.newLatLngZoom(
+  com.trackasia.android.geometry.LatLng(21.028, 105.854), 14.0)
+trackasiaMap.animateCamera(update, 1000)
+
+// Đổi style runtime
+trackasiaMap.setStyle("https://maps.track-asia.com/styles/v1/night.json?key=public")
+</code></pre>
+
+  <h2 id="navigation">9) Routing & Navigation</h2>
+  <p>Tính route bằng Navigation Core, parse DirectionsResponse; vẽ route bằng <code>NavigationMapRoute</code>. Có thể chuyển sang <code>TrackAsiaNavigationActivity</code> để điều hướng turn-by-turn.</p>
+
+  <h2 id="screenshots">10) Hình minh hoạ</h2>
+  <div>
+    <img src="https://git.advn.vn/sangnguyen/trackasia-document/-/raw/master/images/android_1.JPEG" alt="Android 1" width="30%" />
+    <img src="https://git.advn.vn/sangnguyen/trackasia-document/-/raw/master/images/android_2.JPEG" alt="Android 2" width="30%" />
+    <img src="https://git.advn.vn/sangnguyen/trackasia-document/-/raw/master/images/android_3.JPEG" alt="Android 3" width="30%" />
+    <img src="https://git.advn.vn/sangnguyen/trackasia-document/-/raw/master/images/android_4.JPEG" alt="Android 4" width="30%" />
+    <img src="https://git.advn.vn/sangnguyen/trackasia-document/-/raw/master/images/android_5.JPEG" alt="Android 5" width="30%" />
+    <img src="https://git.advn.vn/sangnguyen/trackasia-document/-/raw/master/images/android_6.JPEG" alt="Android 6" width="30%" />
+    <img src="https://git.advn.vn/sangnguyen/trackasia-document/-/raw/master/images/android_7.JPEG" alt="Android 7" width="30%" />
+  </div>
+
+  <h2 id="checklist">11) Checklist tích hợp nhanh</h2>
+  <ul>
+    <li>Thêm dependencies TrackAsia; đồng bộ version.</li>
+    <li>Cấu hình quyền/Activity trong Manifest.</li>
+    <li>Thêm MapView vào layout, khởi tạo SDK, set style URL.</li>
+    <li>Forward đủ lifecycle MapView.</li>
+    <li>Kiểm thử marker/camera/navigation + xin quyền vị trí.</li>
+    <li>Cấu hình ABI filters, logging và proguard khi cần.</li>
+  </ul>
+
+  <hr />
+  <p><strong>Sử dụng với Microsoft Word:</strong> Mở file HTML này bằng Word (File → Open), sau đó dùng “Save As…” để lưu thành .docx. Hình ảnh sẽ được Word tải từ URL và nhúng khi bạn lưu sang .docx.</p>
+</body>
+</html>

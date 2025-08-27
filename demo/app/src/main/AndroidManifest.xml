@@ -42,6 +42,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.trackasia.navigation.android.navigation.ui.v5.TrackAsiaNavigationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA0T9_RVH4Jva3pKhenF5G059Pa7G0KxWE" />

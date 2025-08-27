@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface APIService {
-    @GET("api/v1/reverse")
+    @GET("/api/v1/reverse?key=public_key")
     fun reverseGeocode(
         @Query("lang") lang: String,
         @Query("point.lon") lon: Double,
@@ -16,7 +16,7 @@ interface APIService {
 }
 
 interface ApiSuggestionService {
-    @GET("/api/v1/autocomplete?lang=vi&key=public")
+    @GET("/api/v1/autocomplete?lang=vi&key=public_key")
     fun getSuggestions(@Query("text") text: String): Call<AutoSuggestionResponse>
 }
 

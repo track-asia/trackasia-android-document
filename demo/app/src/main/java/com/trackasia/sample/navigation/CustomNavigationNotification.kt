@@ -13,9 +13,9 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
-import com.trackasia.navigation.android.navigation.v5.navigation.NavigationConstants.NAVIGATION_NOTIFICATION_CHANNEL
-import com.trackasia.navigation.android.navigation.v5.navigation.notification.NavigationNotification
-import com.trackasia.navigation.android.navigation.v5.routeprogress.RouteProgress
+import com.trackasia.navigation.android.navigation.ui.v5.notification.NavigationNotification
+import com.trackasia.navigation.android.navigation.ui.v5.notification.TrackAsiaNavigationNotification.Companion.NAVIGATION_NOTIFICATION_CHANNEL
+import com.trackasia.navigation.core.routeprogress.RouteProgress
 import com.trackasia.sample.R
 
 class CustomNavigationNotification(private val applicationContext: Context) :

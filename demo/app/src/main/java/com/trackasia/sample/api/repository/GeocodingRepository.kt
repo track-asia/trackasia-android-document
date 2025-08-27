@@ -28,9 +28,9 @@ suspend fun showPointMap(point: LatLng, context: Activity): ResultAPI<GeoCodingD
             if (response.isSuccessful) {
                 val geocodingResponse = response.body()
                 if (geocodingResponse != null) {
-                    val name = geocodingResponse.features?.firstOrNull()?.properties?.name
-                    val long = geocodingResponse.features?.firstOrNull()?.geometry?.coordinates?.get(0)
-                    val lat = geocodingResponse.features?.firstOrNull()?.geometry?.coordinates?.get(1)
+                    val name = geocodingResponse.features.firstOrNull()?.properties?.name
+                    val long = geocodingResponse.features.firstOrNull()?.geometry?.coordinates?.get(0)
+                    val lat = geocodingResponse.features.firstOrNull()?.geometry?.coordinates?.get(1)
                     ResultAPI.Success(GeoCodingData(name, long?.toString() ?: "", lat?.toString() ?: ""))
                 } else {
                     ResultAPI.Error(Exception("Response body is null"))

@@ -52,11 +52,15 @@
     <color name="colorPink">#E31C93</color>
     <color name="colorPinkLight">#F470B1</color>
     <color name="colorPinkService">#EA529D</color>
+    <color name="white">#FFFFFF</color>
+
 
     <color name="colorLine2">#E0E0E0</color>
     <color name="colorLine">#E8E8E8</color>
     <color name="colorGreenReVerify">#25C0C6</color>
     <color name="colorGreen">#25C6BA</color>
+    <color name="colorGray">#BDBDBD</color>
+    <color name="colorBlack">#000000</color>
 
 
     <color name="colorBlue">#3D6EBE</color>
@@ -89,5 +93,13 @@
     <color name="confirm">#ffffff</color>
     <color name="complete">#ffffff</color>
     <color name="derivered">#ffffff</color>
+
+    <!-- Cluster donut chart colors -->
+    <color name="cluster_color_1">#00ff99</color>
+    <color name="cluster_color_2">#00b4d8</color>
+    <color name="cluster_color_3">#FFA500</color>
+    <color name="cluster_color_4">#006600</color>
+    <color name="cluster_color_5">#FF4500</color>
+    <color name="cluster_color_6">#0304af</color>
 
 </resources>
