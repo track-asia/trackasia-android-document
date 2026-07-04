@@ -105,7 +105,6 @@ allprojects {
         google()
         mavenCentral()
         maven { url 'https://jitpack.io' }
-        maven { url 'https://api.mapbox.com/downloads/v2/releases/maven' }
     }
 }
 ```
@@ -847,7 +846,7 @@ mapView.getMapAsync { map ->
             override fun onError(error: String) {
                 Log.e("MapError", "Style loading error: $error")
                 // Fallback to default style
-                map.setStyle(Style.MAPBOX_STREETS)
+                map.setStyle(Style.Builder().fromUri("https://maps.track-asia.com/styles/v1/streets.json?key=public_key"))
             }
         }
     )
@@ -1078,7 +1077,7 @@ fun addMultipleMarkers(points: List<LatLng>) {
 - 🔗 [TrackAsia Android SDK](https://github.com/track-asia/trackasia-native)
 - 🔗 [TrackAsia Java](https://github.com/track-asia/trackasia-java)
 - 🔗 [TrackAsia Navigation Android](https://github.com/track-asia/trackasia-navigation-android)
-- 🔗 [MapBox Style Specification](https://docs.mapbox.com/mapbox-gl-js/style-spec/)
+- 🔗 [MapLibre Style Specification](https://maplibre.org/maplibre-style-spec/)
 
 ### API Documentation
 - 📖 [Geocoding API](https://docs.track-asia.com/api/geocoding)

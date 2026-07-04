@@ -46,7 +46,7 @@
       "log": "Log.d(\"${1:TAG}\", \"${2:message}\")",
       "activity": "class ${1:Activity}Activity : AppCompatActivity() {\n\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        setContentView(R.layout.activity_${2:layout})\n        ${0}\n    }\n}",
       "fragment": "class ${1:Name}Fragment : Fragment() {\n\n    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {\n        return inflater.inflate(R.layout.fragment_${2:layout}, container, false)\n    }\n\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\n        super.onViewCreated(view, savedInstanceState)\n        ${0}\n    }\n}",
-      "trackmap": "val mapView = findViewById<TrackAsiaMap>(R.id.mapView)\nmapView.getMapAsync { map ->\n    map.setStyle(Style.MAPBOX_STREETS) { style ->\n        ${0}\n    }\n}"
+      "trackmap": "val mapView = findViewById<TrackAsiaMap>(R.id.mapView)\nmapView.getMapAsync { map ->\n    map.setStyle(Style.Builder().fromUri(styleUrl)) { style ->\n        ${0}\n    }\n}"
     }
   }
 } 
