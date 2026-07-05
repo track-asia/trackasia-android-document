@@ -84,7 +84,7 @@ The `.cursorrules` file contains IDE configuration for the Cursor editor, specif
 
 ### 3.5 MapBox Access Token
 
-- Value: `pk.eyJ1Ijoic2FuZ25ndXllbjI1IiwiYSI6ImNsMGU0djFicjBmYzczam4wbnpmdjVrcGcifQ.s-R3of1BK-vomakvEGkgYw`
+- Value: `YOUR_TRACKASIA_ACCESS_TOKEN`
 
 ## 4. iOS Mapping Recommendations
 
@@ -302,7 +302,7 @@ struct AutoSuggestionResponse: Codable {
     
     <!-- TrackAsia Configuration -->
     <key>MGLMapboxAccessToken</key>
-    <string>pk.eyJ1Ijoic2FuZ25ndXllbjI1IiwiYSI6ImNsMGU0djFicjBmYzczam4wbnpmdjVrcGcifQ.s-R3of1BK-vomakvEGkgYw</string>
+    <string>YOUR_TRACKASIA_ACCESS_TOKEN</string>
 </dict>
 </plist>
 ```
