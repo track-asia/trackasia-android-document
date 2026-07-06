@@ -35,8 +35,8 @@ Thêm dependencies cho TrackAsia SDK và các dịch vụ liên quan:
 ```gradle
 dependencies {
     implementation('io.github.track-asia:android-sdk:2.0.2')
-    implementation('io.github.track-asia:geojson:2.0.1')
-    implementation('io.github.track-asia:turf:2.0.1')
+    implementation('io.github.track-asia:geojson:2.0.2')
+    implementation('io.github.track-asia:turf:2.0.2')
     implementation('io.github.track-asia:android-plugin-annotation-v9:2.0.1')
 }
 ```

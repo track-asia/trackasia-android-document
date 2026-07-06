@@ -147,15 +147,15 @@ dependencies {
     implementation('io.github.track-asia:android-sdk:2.0.2')
     
     // TrackAsia Data Models
-    implementation('io.github.track-asia:android-sdk-geojson:2.0.1')
-    implementation('io.github.track-asia:android-sdk-turf:2.0.1')
+    implementation('io.github.track-asia:geojson:2.0.2')
+    implementation('io.github.track-asia:turf:2.0.2')
     
     // TrackAsia Plugins
     implementation('io.github.track-asia:android-plugin-annotation-v9:2.0.1')
     
     // TrackAsia Navigation
-    implementation('io.github.track-asia:libandroid-navigation:2.0.2')
-    implementation('io.github.track-asia:libandroid-navigation-ui:2.0.2')
+    implementation('io.github.track-asia:navigation-core:2.0.2')
+    implementation('io.github.track-asia:navigation-ui-android:2.0.2')
     
     // Location Services
     implementation 'com.google.android.gms:play-services-location:21.0.1'
