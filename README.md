@@ -71,9 +71,11 @@ Minimum SDK: API 26 (Android 8.0)
 Target SDK: API 35 (Android 15)
 Compile SDK: 35
 Kotlin: 1.9.10
-Gradle: 8.4.2
-Gradle Wrapper: 8.6
+AGP (Android Gradle Plugin): 8.5.0
+Gradle Wrapper: 8.7
 ```
+
+> **Lưu ý:** TrackAsia SDK 2.0.2 được build bằng Kotlin 2.1.0. Nếu dự án của bạn dùng Kotlin 1.9.x, cần thêm `-Xskip-metadata-version-check` vào `kotlinOptions.freeCompilerArgs` để tránh lỗi compile. Xem demo project để biết chi tiết.
 
 ### Supported ABIs:
 - `armeabi-v7a` (32-bit ARM)
@@ -95,7 +97,7 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.4.2'
+        classpath 'com.android.tools.build:gradle:8.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -108,6 +110,8 @@ allprojects {
     }
 }
 ```
+
+> **Kotlin DSL (`build.gradle.kts`):** Nếu dùng Kotlin DSL, dùng `plugins {}` block với version catalog (`libs.versions.toml`). Xem thư mục `example/` để biết cấu hình mẫu.
 
 ### 2. Module `build.gradle`
 ```gradle
@@ -146,7 +150,7 @@ dependencies {
     // TrackAsia Core SDK
     implementation('io.github.track-asia:android-sdk:2.0.2')
     
-    // TrackAsia Data Models
+    // TrackAsia Data Models (KHÔNG dùng android-sdk-geojson hay android-sdk-turf)
     implementation('io.github.track-asia:geojson:2.0.2')
     implementation('io.github.track-asia:turf:2.0.2')
     
@@ -159,6 +163,29 @@ dependencies {
     
     // Location Services
     implementation 'com.google.android.gms:play-services-location:21.0.1'
+}
+
+// Force consistent versions và loại bỏ artifact cũ (android-sdk-geojson, android-sdk-turf)
+configurations.all {
+    resolutionStrategy {
+        force 'io.github.track-asia:android-sdk:2.0.2'
+        force 'io.github.track-asia:geojson:2.0.2'
+        force 'io.github.track-asia:turf:2.0.2'
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.9.10'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-common:1.9.10'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.10'
+    }
+    exclude group: 'io.github.track-asia', module: 'android-sdk-geojson'
+    exclude group: 'io.github.track-asia', module: 'android-sdk-turf'
+}
+```
+
+**Kotlin DSL (`build.gradle.kts`):**
+```kotlin
+kotlinOptions {
+    jvmTarget = "1.8"
+    freeCompilerArgs = listOf("-Xskip-metadata-version-check")
 }
 ```
 
@@ -204,10 +231,11 @@ org.gradle.caching=true
             </intent-filter>
         </activity>
         
-        <!-- TrackAsia Navigation Service -->
-        <service 
-            android:name="com.trackasia.navigation.android.navigation.v5.navigation.MapboxNavigationService"
-            android:exported="false" />
+        <!-- TrackAsia Navigation Activity -->
+        <activity
+            android:name="com.trackasia.navigation.android.navigation.ui.v5.TrackAsiaNavigationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
             
     </application>
 </manifest>
@@ -294,7 +322,7 @@ class MapActivity : AppCompatActivity(), PermissionsListener {
     private lateinit var navigationMapRoute: NavigationMapRoute
     
     // Configuration
-    private val styleUrl = "https://maps.track-asia.com/styles/v1/streets.json?key=public_key"
+    private val styleUrl = "https://maps.track-asia.com/styles/v2/streets.json?key=public"
     private val defaultLocation = LatLng(10.728073, 106.624054) // Ho Chi Minh City
     private val defaultZoom = 12.0
     
@@ -456,7 +484,7 @@ class MultiPointNavigation {
         
         // Get route from API
         NavigationRoute.builder(context)
-            .accessToken(getString(R.string.mapbox_access_token))
+            .accessToken(getString(R.string.trackasia_api_key))
             .routeOptions(routeOptions)
             .build()
             .getRoute(object : NavigationRoute.RouteListener {
@@ -569,12 +597,15 @@ class MarkerClustering {
 class CustomMapStyles {
     
     companion object {
-        // Style URLs for different countries
-        const val STYLE_VN_STREETS = "https://maps.track-asia.com/styles/v1/streets.json?key=public_key"
-        const val STYLE_VN_SATELLITE = "https://maps.track-asia.com/styles/v1/satellite.json?key=public_key"
-        const val STYLE_VN_NIGHT = "https://maps.track-asia.com/styles/v1/night.json?key=public_key"
-        const val STYLE_SG_STREETS = "https://sg-maps.track-asia.com/styles/v1/streets.json?key=public_key"
-        const val STYLE_TH_STREETS = "https://th-maps.track-asia.com/styles/v1/streets.json?key=public_key"
+        // Style URLs for different countries - streets uses key=public, night/simple uses key=public_key
+        const val STYLE_VN_STREETS = "https://maps.track-asia.com/styles/v2/streets.json?key=public"
+        const val STYLE_VN_SATELLITE = "https://tiles.track-asia.com/sats/v1/satellite/satellite.json?key=public"
+        const val STYLE_VN_NIGHT = "https://maps.track-asia.com/styles/v2/night.json?key=public_key"
+        const val STYLE_VN_SIMPLE = "https://maps.track-asia.com/styles/v2/simple.json?key=public_key"
+        const val STYLE_SG_STREETS = "https://sg-maps.track-asia.com/styles/v2/streets.json?key=public"
+        const val STYLE_TH_STREETS = "https://th-maps.track-asia.com/styles/v2/streets.json?key=public"
+        const val STYLE_TW_STREETS = "https://tw-maps.track-asia.com/styles/v2/streets.json?key=public"
+        const val STYLE_MY_STREETS = "https://my-maps.track-asia.com/styles/v2/streets.json?key=public"
     }
     
     fun switchMapStyle(style: String) {
@@ -673,7 +704,8 @@ object ApiConstants {
     const val ELEVATION_ENDPOINT = "api/v1/elevation"
     
     // API Keys
-    const val PUBLIC_KEY = "public_key"
+    const val PUBLIC_KEY = "public"
+    const val PUBLIC_KEY_ALT = "public_key"  // Dùng cho night, simple styles
     const val PRIVATE_KEY = "your_private_key_here"
 }
 ```
@@ -830,8 +862,8 @@ class ApiUsageExamples {
 ```kotlin
 // Kiểm tra API key
 if (styleUrl.contains("key=")) {
-    // Ensure key is valid
-    val validatedUrl = styleUrl.replace("public", "public_key")
+    // Đảm bảo key hợp lệ - streets style dùng key=public, night/simple dùng key=public_key
+    val validatedUrl = styleUrl.replace("key=public_key", "key=public")
 }
 
 // Add error handling
@@ -846,7 +878,7 @@ mapView.getMapAsync { map ->
             override fun onError(error: String) {
                 Log.e("MapError", "Style loading error: $error")
                 // Fallback to default style
-                map.setStyle(Style.Builder().fromUri("https://maps.track-asia.com/styles/v1/streets.json?key=public_key"))
+                map.setStyle(Style.Builder().fromUri("https://maps.track-asia.com/styles/v2/streets.json?key=public"))
             }
         }
     )
@@ -1113,4 +1145,4 @@ Nếu bạn gặp vấn đề hoặc cần hỗ trợ:
 
 **Made with ❤️ by TrackAsia Team**
 
-*Last updated: November 2024*
+*Last updated: July 2025*

@@ -1,6 +1,6 @@
 [versions]
 agp = "8.5.0"
-kotlin = "1.9.0"
+kotlin = "1.9.10"
 #coreKtx = "1.13.1"
 coreKtx = "1.6.0"
 junit = "4.13.2"
@@ -11,8 +11,8 @@ material = "1.5.0"
 activity = "1.9.3"
 constraintlayout = "2.1.4"
 playServicesBasement = "18.4.0"
-trackasia = "1.0.20"
-androidSdk = "1.0.20"
+trackasia = "2.0.2"
+androidSdk = "2.0.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

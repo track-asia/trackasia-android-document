@@ -22,6 +22,7 @@
         app:trackasia_uiLogo="true"
         app:trackasia_uiRotateGestures="true"
         app:trackasia_uiScrollGestures="true"
-        app:trackasia_uiTiltGestures="true"/>
+        app:trackasia_uiTiltGestures="true"
+        app:trackasia_uiZoomGestures="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
